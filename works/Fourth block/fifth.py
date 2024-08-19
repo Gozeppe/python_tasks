@@ -47,4 +47,3 @@ while counter < sack_count:
 
 # Выводим суммарный вес
 print(f'The total weight of all sacks is: {total_weight} kg')
-a
