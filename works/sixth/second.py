@@ -7,6 +7,7 @@ number_for_cube = int(input('Введите число: '))
 
 for number in range(1, number_for_cube + 1, 2):
     print(f'{number} в кубе = {number ** 3}')
+
 #Задача 2. Театр
 #Ваню заставили пойти в театр на балет. Ему стало там настолько скучно, что он придумал себе очень странное развлечение:
 #считать сумму номеров каждого пятого стула в рядах.
@@ -24,7 +25,6 @@ for number in range(1, number_for_cube + 1, 2):
 number_for_chair = int(input('Введите число: '))
 sum_of_chair = 0
 
-# Диапазон до N включительно, поэтому используем number_for_chair + 1
 for number in range(1, number_for_chair + 1, 5):
     print(f'Номер стула: {number}')
     sum_of_chair += number
@@ -36,3 +36,16 @@ print(f'Сумма: {sum_of_chair}')
 #Питается Саша следующим образом: каждые 3 часа он выпивает литр воды и съедает N калорий. 
 #Пить и есть он, кстати, начинает сразу как только проснётся. 
 #Напишите программу, которая считает сколько он выпьет литров воды и сколько калорий он съест перед тем как пойдёт спать.
+
+hour_wake = int(input('Введите время просыпания'))
+water = 0
+calories_sum = 0
+
+for hour in range (hour_wake, 23, 3):
+     water += 1
+     print(f'Пошёл есть в {hour} часов')
+     calories = int(input('Сколько калорий потреблено?: '))
+     calories_sum += calories
+
+print(f'Выпито литров {water}')
+print(f'Съедено еды {calories_sum}')
