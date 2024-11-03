@@ -23,33 +23,55 @@ print('Задача 1. Урок информатики 2')
 # Введите число: 0.0012
 # Формат плавающей точки: x = 1.2 * 10 ** -3
 
-def float_format():
+print('Задача 1. Урок информатики 2')
+
+# В прошлый раз учитель написал программу,
+# которая выводит числа в формате плавающей точки, однако он вспомнил,
+# что не учёл одну важную штуку: числа-то могут идти от нуля.
+# 
+# Задано положительное число x (x > 0).
+# Ваша задача преобразовать его в формат плавающей точки,
+# то есть x = a * 10 ** b, где 1 ≤ а < 10
+# 
+# Обратите внимание, что x теперь больше нуля, а не больше единицы.
+# Обеспечьте контроль ввода.
+# 
+# Пример 1:
+# 
+# Введите число: 92345
+# 
+# Формат плавающей точки: x = 9.2345 * 10 ** 4
+# 
+# Пример 2:
+# 
+# Введите число: 0.0012
+# Формат плавающей точки: x = 1.2 * 10 ** -3
+
+def get_positive_float():
     while True:
-        try:
-            x = float(input("Введите положительное число: "))
-            if x <= 0:
-                print("Число должно быть больше нуля. Попробуйте снова.")
-                continue
-            break
-        except ValueError:
-            print("Некорректный ввод. Пожалуйста, введите число.")
+        user_input = float(input("Введите положительное число: "))
+        if user_input <= 0:
+            print("Число должно быть больше нуля. Попробуйте снова.")
+            continue
+        break
 
-    # Преобразуем число в формат научной нотации
-    a = x
-    b = 0
-    if x < 1:
-        while a < 1:
-            a *= 10
-            b -= 1
+
+    mantissa = user_input
+    exponent = 0
+    if user_input < 1:
+        while mantissa < 1:
+            mantissa *= 10
+            exponent -= 1
     else:
-        while a >= 10:
-            a /= 10
-            b += 1
+        while mantissa >= 10:
+            mantissa /= 10
+            exponent += 1
 
-    print(f"Формат плавающей точки: x = {a} * 10 ** {b}")
+    print(f"Формат плавающей точки: x = {mantissa} * 10 ** {exponent}")
 
-# Запуск функции
-float_format()
+
+get_positive_float()
+
 
 
 
@@ -68,22 +90,29 @@ print('Задача 2. Функция максимума')
 # при этом она должна использовать для сравнений первую функцию maximum_of_two.
 
 
-def maximum_of_two(num1, num2):
+def get_maximum_of_two(first_number, second_number):
     """Возвращает максимум из двух чисел."""
-    return num1 if num1 > num2 else num2
+    if first_number > second_number:
+        return first_number
+    else:
+        return second_number
 
-def maximum_of_three(num1, num2, num3):
-    """Возвращает максимум из трех чисел, используя maximum_of_two."""
-    max_of_first_two = maximum_of_two(num1, num2)
-    return maximum_of_two(max_of_first_two, num3)
 
-# Ввод чисел от пользователя
+def get_maximum_of_three(first_number, second_number, third_number):
+    """Возвращает максимум из трех чисел, используя get_maximum_of_two."""
+    max_of_first_two = get_maximum_of_two(first_number, second_number)
+    if max_of_first_two > third_number:
+        return max_of_first_two
+    else:
+        return third_number
+
+
 number1 = float(input("Введите первое число: "))
 number2 = float(input("Введите второе число: "))
 number3 = float(input("Введите третье число: "))
 
-# Нахождение максимума и вывод результата
-maximum_value = maximum_of_three(number1, number2, number3)
+
+maximum_value = get_maximum_of_three(number1, number2, number3)
 print(f"Максимальное число: {maximum_value}")
 
 
@@ -295,7 +324,7 @@ print('Задача 6. Яйца')
 # Приблизительная глубина безопасной кладки: 0.732421875 м
 
 
-def danger_level(x):
+def find_danger_level(x):
     """Вычисляет уровень опасности по заданной формуле."""
     return x**3 - 3 * x**2 - 12 * x + 10
 
@@ -307,7 +336,7 @@ def find_safe_depth(tolerance):
 
     while low <= high:
         mid = (low + high) / 2
-        danger = danger_level(mid)
+        danger = find_danger_level(mid)
 
         if abs(danger) <= tolerance:
             best_x = mid
