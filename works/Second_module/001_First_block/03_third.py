@@ -10,6 +10,22 @@
 # Введите строку: гвозди:шурупы:гайки
 # Исправленная строка: гвозди;шурупы;гайки
 # Кол-во замен: 2
+count = 0        
+list_str = []    
+str_input = input('Введите строку: ')
+
+for symbol in str_input:
+    if symbol == ':':
+        list_str.append(';')  
+        count += 1            
+    else:
+        list_str.append(symbol)  
+
+result_str = ''.join(list_str)
+
+print("Исправленная строка:", result_str)
+print("Кол-во замен:", count)
+
 
 # Задача 2. Соседи
 # Дана строка S и номер позиции символа в строке. Напишите программу, 
@@ -34,6 +50,27 @@
 
 # Таких же символов нет.
 
+msg = input("Введите строку: ")
+index_of_letter = int(input("Номер символа: ")) - 1  # сразу отнимаем 1, чтобы превратить номер в индекс
+letters = list(msg)
+count = 0
+if index_of_letter > 0:
+    print("Символ слева:", letters[index_of_letter - 1])
+    if letters[index_of_letter - 1] == letters[index_of_letter]:
+        count += 1
+if index_of_letter < len(letters) - 1:
+    print("Символ справа:", letters[index_of_letter + 1])
+    if letters[index_of_letter + 1] == letters[index_of_letter]:
+        count += 1
+
+if count == 0:
+    print("Таких же символов нет.")
+elif count == 1:
+    print("Есть ровно один такой же символ.")
+elif count == 2:
+    print("Таких символов два.")
+
+    
 # Задача 3. Улучшенная лингвистика
 # Мы уже писали программу для лингвистов, которая считала количество определённых букв в тексте. 
 # Теперь эту программу нужно улучшить. Есть список из трёх слов, которые вводит пользователь. 
@@ -55,3 +92,23 @@
 # я: 0
 # год: 2
 # лучший: 1
+
+
+words_list = []
+counts = [0, 0, 0]
+
+for i in range(3):
+    print("Введите", i + 1, "слово", end=' ')
+    word = input()
+    words_list.append(word)
+
+text = input("Слово из текста: ")
+while text != "end":
+    for index in range(3):
+        if words_list[index] == text:
+            counts[index] += 1
+    text = input("Слово из текста: ")
+
+print("Подсчёт слов в тексте")
+for i in range(3):
+    print(words_list[i], ':', counts[i])
