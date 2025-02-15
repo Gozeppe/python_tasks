@@ -4,7 +4,18 @@
 # У нас есть список из трёх слов, которые вводит пользователь. Затем вводится сам текст произведения, который вводится уже в одну строку.
 #  Напишите программу, которая посчитает, сколько раз слова пользователя встречаются в тексте. 
 
+word_list = input('Введите 3 слова через пробел: ').split()
+sentence = input('Введите текст произведения: ')
 
+total_count = 0
+sentence = sentence.lower()
+words_in_text = sentence.split() 
+
+
+for word in word_list:
+    total_count += words_in_text.count(word.lower())
+
+print(f"Общее количество вхождений: {total_count}")
 
 # Задача 2. Бабушка
 # У одной бабушки, когда та переписывается с внуком, постоянно залипает кнопка пробела. В итоге между словами получаются огромные расстояния. 
@@ -23,7 +34,9 @@
 
 # Исправленный текст: У нас пошёл снег !
 
-
+user_input = input('Введите текст: ')
+new_input = ' '.join(user_input.split())
+print(new_input)
 
 # Задача 3. Разделители символов
 # Человек хочет сделать рассылку поздравлений для определённого списка людей. Поздравления для разных людей он хочет написать по-разному. 
@@ -62,3 +75,20 @@
 
 # Именинники: Иван Иванов 20, Петя Петров 30, Лена Ленова 18
 
+greeting = input('Введите шаблон поздравления!: ')
+
+names = input('Введите имена через запятую: ').split(', ')
+age = input('Введите возраст через пробел: ').split()
+
+
+greetings_list = []
+
+for full_name, a in zip(names, age):
+    first_name, last_name = full_name.split()  
+    greetings_list.append(greeting.format(name=first_name, age=a))
+
+for greeting_text in greetings_list:
+    print(greeting_text)
+
+birthday_people = ", ".join([f"{first_name} {last_name} {a}" for full_name, a in zip(names, age) for first_name, last_name in [full_name.split()]])
+print(f"Именинники: {birthday_people}")
