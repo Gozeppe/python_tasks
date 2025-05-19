@@ -4,5 +4,18 @@
 # переводит в нижний регистр
 # заменяет "!" на "?"
 
+def sanitize(text):
+   if symbol == '!':
+       text.replace 
 # Задание 14. Повторяшка
 # Функция, которая принимает строку и число, и возвращает эту строку, повторённую указанное число раз.
+
+
+
+def repeat(text, digit):
+   return text * digit
+
+text = input('Введите строку: ')
+digit = int(input('Введите число: '))
+
+repeat(text, digit)
