@@ -23,7 +23,17 @@
 
 # Результат работы программы:
 
- 
+main = [1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1]
+
+first_company = [0, 0, 0]
+
+second_company = [1, 0, 0, 1, 1]
+
+third_company = [1, 1, 1, 0, 1]
+
+main.extend(first_company + second_company + third_company)
+print(main.count(0))
+
 
 # Общий список задач: [1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1]
 
@@ -34,37 +44,37 @@
 # Задача 2. Вредоносное ПО
 # Гера решил попрактиковаться в программировании и захотел написать небольшой скрипт, 
 # который после двух сообщений отправляет ещё одно на основе первых двух.
-
 # Пользователь вводит две строки. В каждой из них есть какое-то количество специальных символов ! и ?. 
 # Напишите программу, которая считает количество этих символов отдельно в первой строке и отдельно во второй. Если в первой строке их больше,
 #  чем во второй, то на экран выводится первая строчка, объединённая со второй, а иначе — вторая с первой.
 #  При равном количестве символов в строках выводится «Ой».
 
- 
-
-# Пример 1:
-
+ # Пример 1:
 # Первое сообщение: Привет!
-
 # Второе сообщение: Как дела? Что делаешь?
-
- 
-
 # Третье сообщение: Как дела? Что делаешь? Привет!
 
- 
-
-# Пример 2:
-
+ # Пример 2:
 # Первое сообщение: Хм!!
-
 # Второе сообщение: ?
-
- 
-
 # Третье сообщение: Хм!!?
 
+specials = ('!', '?')
 
+first = input('Enter First String: ')
+second = input('Enter Second String: ')
+
+count1 = sum(1 for ch in first if ch in specials)
+count2 = sum(1 for ch in second if ch in specials)
+
+if count1 > count2:
+    result = first + ' ' + second
+elif count2 > count1:
+    result = second + ' ' + first
+else:
+    result = 'Ой'
+
+print(f'Third Message: {result}')
 
 # Задача 3. Пакеты
 # При работе с сервером мы кодируем сообщение и отправляем его в виде пакетов информации. Их количество равно N. 
@@ -107,3 +117,31 @@
 # Кол-во ошибок в сообщении: 1
 # Кол-во потерянных пакетов: 1
 
+N = int(input('Packages: '))
+
+message_recieved = []
+broken_bit = 0
+lost_package = 0
+
+
+for i in range (N):
+  count_error = 0
+  temp_package = []
+  print(f'Package number {i + 1}')
+
+  for j in range(4):
+    enter_bit = int(input(f'{j + 1} bit: '))
+    temp_package.append(enter_bit)
+    if enter_bit == -1:
+      count_error += 1
+  if count_error <= 1:
+    message_recieved.extend(temp_package)
+    broken_bit += count_error
+  else:
+    print('Too many errors in package.')
+    lost_package += 1
+    
+
+print(f'Message recieved {message_recieved}')
+print(f'Errors in package: {broken_bit}')
+print(f'Lost packages {lost_package}')
