@@ -40,11 +40,22 @@ print(f'Qube list: {qube}')
 
 # Склейка с дополнительным символом: ['пп!', 'рр!', 'ии!', 'вв!', 'ее!', 'тт!']
 
-user_string = input('Enter string: ')
-user_symbol = input('Enter symbol')
+specials = ('!', '?')
 
-first_list = [letter* 2 for letter in user_string]
-second_list = [sym + user_symbol for sym in first_list]
+first = input('Enter First String: ')
+second = input('Enter Second String: ')
+
+count1 = sum(1 for ch in first if ch in specials)
+count2 = sum(1 for ch in second if ch in specials)
+
+if count1 > count2:
+    result = first + ' ' + second
+elif count2 > count1:
+    result = second + ' ' + first
+else:
+    result = 'Ой'
+
+print(f'Third Message: {result}')
 
 # Задача 3. Повышение цен
 # Дан список цен на пять товаров с точностью до копейки. Так как экономика даёт о себе знать, мы спрогнозировали, 
