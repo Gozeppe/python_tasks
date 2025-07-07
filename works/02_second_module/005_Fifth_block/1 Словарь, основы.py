@@ -50,7 +50,7 @@ user_information = input('Введите информацию через про�
 data = user_information.split()
 
 student = {}
-student["Имя"] = data(0)
+student("Имя") = data(0)
 student("Фамилия") = data(1)
 student("Город") = data(2)
 student("Место учёбы") = data(3)
