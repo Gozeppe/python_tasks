@@ -53,29 +53,29 @@ print(f'Полная площадь: {full}')
 
  
 
-# def change(nums):
+def change(nums):
 
-#     index = random.randint(0, 5)
+   index = random.randint(0, 5)
 
-#     value = random.randint(100, 1000)
+   value = random.randint(100, 1000)
 
-#     nums[index] = value
+   nums[index] = value
 
-#     return nums, value
-
- 
-
-# my_nums = 1, 2, 3, 4, 5
+   return nums, value
 
  
 
-# new_nums, rand_val = change(my_nums)
+my_nums = 1, 2, 3, 4, 5
 
-# print(new_nums, rand_val)
+ 
 
-# new_nums = change(new_nums)
+new_nums, rand_val = change(my_nums)
 
-# rand_val += change(new_nums)
+print(new_nums, rand_val)
 
-# print(new_nums, rand_val)
+new_nums = change(new_nums)
+
+rand_val += change(new_nums)
+
+print(new_nums, rand_val)
 

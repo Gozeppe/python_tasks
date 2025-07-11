@@ -4,27 +4,28 @@
 
 # Дан словарь с парами «название фрукта — цена»:
 
-# incomes = {
+incomes = {
 
-#     'apple': 5600.20,
+     'apple': 5600.20,
 
-#     'orange': 3500.45,
+     'orange': 3500.45,
 
-#     'banana': 5000.00,
+     'banana': 5000.00,
 
-#     'bergamot': 3700.56,
+     'bergamot': 3700.56,
 
-#     'durian': 5987.23,
+     'durian': 5987.23,
 
-#     'peach': 10000.50,
+     'peach': 10000.50,
 
-#     'pear': 1020.00,
+     'pear': 1020.00,
 
-#     'persimmon': 310.00,
+     'persimmon': 310.00,
 
-# }
+}
 
- 
+for a, b in incomes.items():
+    print(a, ' - - ', b)
 
 # Вывести на экран словарь в следующем виде:
 
@@ -53,29 +54,33 @@
 # Задача 2. Сервер
 # У вас есть данные о сервере, которые хранятся в виде вот такого словаря:
 
-# server_data = {
+server_data = {
 
-#     "server": {
+     "server": {
 
-#         "host": "127.0.0.1",
+         "host": "127.0.0.1",
 
-#         "port": "10"
+         "port": "10"
 
-#     },
+     },
 
-#     "configuration": {
+     "configuration": {
 
-#         "access": "true",
+         "access": "true",
 
-#         "login": "Ivan",
+         "login": "Ivan",
 
-#         "password": "qwerty"
+         "password": "qwerty"
 
-#     }
+     }
 
-# }
+ }
 
- 
+for section, selection_data in server_data.items():
+    print(f'{section}:')
+    for key, value in selection_data.items():
+        print(f'    {key}: {value}')
+
 
 # Напишите программу, которая выводит для пользователя эти данные так же красиво и понятно, как они представлены в словаре.
 
@@ -109,3 +114,4 @@
 
 # print([{0: 0, 1: 100, 2: 144, 3: 20, 4: 19}[i_key] for i_key in {0: 0, 1: 100, 2: 144, 3: 20, 4: 19} if i_key % 2 == 0])
 
+print([i_value for i_key, i_value in {0: 0, 1: 100, 2: 144, 3: 20, 4: 19}.items() if i_key % 2 == 0])
