@@ -10,8 +10,31 @@
 
 # Подсказка: для вывода размера файла поищите соответствующий метод.
 
- 
+import os
 
+full_p = ('E:\project\projects\Whispers\Whispers\log.txt')
+
+if os.path.exists(full_p):
+    print(True)
+    
+if os.path.isfile(full_p):
+    print('Это файл')
+
+
+if os.path.isdir(full_p):
+    print('Это дериктория')
+
+if os.path.islink(full_p):
+    print('Это ссылка')
+
+
+print(os.path.getsize(full_p), 'байт')
+
+print('Размер файла:', os.path.getsize(full_p), 'байт')
+    
+    
+    
+    
 # Пример 1:
 
 # Путь: C:\Users\Roman\PycharmProjects\Skillbox\Module17\lesson2.py
@@ -45,7 +68,6 @@
 
 # Имя файла: lesson2
 
- 
 
 # Найдены следующие пути:
 
@@ -64,3 +86,23 @@
 # C:/Users/Roman/PycharmProjects/Skillbox\Module21\lesson2.py
 
 # C:/Users/Roman/PycharmProjects/Skillbox\Module22\lesson2.py
+
+
+import os
+
+
+fil_pat = r'D:\Learning\Python\python_tasks\works\02_second_module'
+fil_name = '1.py'
+
+def find_stuff(dirc):
+    rt_stuff = []
+    for root, dirs, files in os.walk(dirc):
+        if fil_name in files:
+           found_path = os.path.join(root, fil_name)
+           rt_stuff.append([found_path])
+
+    return rt_stuff
+
+      
+for path in find_stuff(fil_pat):
+    print(path)

@@ -1,3 +1,4 @@
+import os
 # Задача 1. Сисадмин
 # Вы работаете системным администратором в одной компании. На диске каждого сотрудника компании в специальной папке access лежит файл admin.bat. 
 # Этот файл предназначен для вас, и вам нужен путь до этого файла, причём как относительный, так и абсолютный. 
@@ -10,6 +11,11 @@
 # Абсолютный путь до файла: C:\Users\Roman\PycharmProjects\Skillbox\access\admin.bat
 
 # Относительный путь до файла: Skillbox\access\admin.bat
+
+abs_path = os.path.abspath("admin.bat")
+print(abs_path)
+
+file = open(os.path.relpath("works/02_second_module/008_Eight_block/admin.bat"))
 
 
 
@@ -43,8 +49,10 @@
 
 #     G:\PycharmProjects\python_basic\Module22
 
+for i_item in os.listdir(r'D:\Learning\Python\python_tasks\works'):
+    print(i_item)
 
-
+ 
 # Задача 3. Корень диска
 # Напишите программу, которая выводит на экран только корень диска, на котором запущен скрипт. Учтите, 
 # что скрипт может быть запущен где угодно и при любой вложенности папок.
@@ -52,3 +60,7 @@
 # Результат программы на примере диска G:
 
 # Корень диска: G:\\
+    
+script_path = os.path.abspath(__file__)   
+tree_path = os.path.splitdrive(script_path)[0]
+print(tree_path)
