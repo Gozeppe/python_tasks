@@ -13,6 +13,7 @@
 
 # 8
 
+import os
 
 def find_nums(path):
     total = 0
