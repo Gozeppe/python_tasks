@@ -1,34 +1,41 @@
-# Задача 2. Старая задача
-# Возьмите любую задачу из домашнего задания, например, предыдущего модуля и оформите её решение в виде try except finally (можно ещё и else), 
-# обрабатывая возможные ошибки.
+# Если в заказе есть цифра — это считается ошибкой (какой нормальный человек кладёт "1 яблоко" в сок?!)
+# Нужно выбросить ошибку (raise ValueError) и записать её в orders_errors.log (с номером строки и содержимым заказа).
+# Если заказ короче 4 символов (после удаления пробелов) — это подозрительно, и надо вызвать ошибку (raise ValueError) и тоже логировать.
+# Все валидные заказы вывести на экран (например: “Заказ принят: апельсин”).
+# В конце написать, сколько всего успешных заказов обработано.
 
-# Посмотрев на то, что получилось, попробуйте ответить себе на такой вопрос: когда стоит использовать обработку исключений и когда она будет излишней?
 
-def find_and_count(txt, output):
-    dic_tol = {}
-    filo = None
-    filu = None
+
+
+def anal_cunt(inp, out):
+    count_orders = 0
     try:
-     filo = open(txt, 'r', encoding='cp1251')
+        with open(inp, 'r', encoding='utf-8') as file:
+            for line_number, line in enumerate(file, 1):
+                
+                 try:
+                    if any(ch.isdigit() for ch in line):
+                            print(f'Попалась цифра в сстроке {line}')
+                            raise ValueError(f'В Этом заказе {line} цифра!')
+                    for word in line.strip().split():
+                     if len(word) < 4:
+                      print(f'Подозрительно... {word} не подходит')
+                      raise ValueError(f'Меньше 4 букв, странно, ')
+                    
+                 except ValueError as e:
+                    with open(out, 'a', encoding='utf-8') as fil:
+                         fil.write(f'{e} в строке {line_number}, \n')
+                 else:
+                    print(f'Заказ принят, {word}')
+                    count_orders += 1
+        print(f'Общее количество заказов: {count_orders}')
     except FileNotFoundError:
-        print('Нет такого файла')
-    else:
-        for line in filo:
-            for char in line:
-              if char.isalpha():
-                    dic_tol[char] = dic_tol.get(char, 0) + 1
-    finally:
-        if filo is not None:
-            filo.close()
-    try:
-     filu =  open(output, 'w', encoding='utf-8')
-    except FileNotFoundError:
-        print('Нет такого файла')
-     else:
-        for symb, blya in sorted(dic_tol.items(), key = lambda item : item[1], reverse=True ):
-            filu.write(f'{symb} - {blya}\n')
-    finally:
+         print('Нет такого файла')
 
-output = r'D:\Learning\Python\python_tasks\exam\module_22\Задача 6. «Война и мир»\letter_stats.txt'
-txt_file = r'D:\Learning\Python\python_tasks\exam\module_22\Задача 6. «Война и мир»\voina-i-mir\voina-i-mir.txt'
-find_and_count(txt_file, output)
+
+
+
+inp_path = r'D:\Learning\Python\python_tasks\works\02_second_module\009_Ninth_block\orders.txt'
+out_path = r'D:\Learning\Python\python_tasks\works\02_second_module\009_Ninth_block\oders_errors.log'
+
+anal_cunt(inp_path, out_path)

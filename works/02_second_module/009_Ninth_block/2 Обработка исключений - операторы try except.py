@@ -36,7 +36,7 @@ try:
 
  print(f'- Leeloo Dallas! Multi-pass № {result}!')
 except ValueError:
-    print('Указана не строка, укажи сьтроку, пятый элемент строки должен быть числом!')
+    print('Указана не строка, укажи строку, пятый элемент строки должен быть числом!')
 except IndexError:
     print('За границы спискв вышел!')
 except Exception as error:
